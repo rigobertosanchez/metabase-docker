@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  metabase-app:
+    # If you prefer use :latest
+    image: metabase/metabase:v0.47.3
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./metabase-data:/metabase-data
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: ${MB_DB_DBNAME}
+      MB_DB_PORT: ${MB_DB_PORT}
+      MB_DB_USER: ${MB_DB_USER}
+      MB_DB_PASS: ${MB_DB_PASS}
+      MB_DB_HOST: ${MB_DB_HOST}
+    # use extra_hosts to 
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
